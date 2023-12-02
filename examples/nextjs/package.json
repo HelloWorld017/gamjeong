@@ -1,0 +1,22 @@
+{
+  "name": "gamjeong-examples-nextjs",
+  "version": "0.1.0",
+  "description": "A next.js example for gamjeong",
+  "main": "index.js",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "start": "next"
+  },
+  "keywords": [
+    "gamjeong"
+  ],
+  "author": "Khinenw",
+  "license": "MIT",
+  "dependencies": {
+    "@types/node": "^20.10.2",
+    "@types/react": "^18.2.40",
+    "next": "^14.0.3",
+    "gamjeong": "link:../../"
+  }
+}

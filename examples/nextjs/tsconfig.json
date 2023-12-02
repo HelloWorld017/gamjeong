@@ -1,0 +1,42 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "lib": ["esnext"],
+    "module": "esnext",
+    "moduleResolution": "node",
+    "isolatedModules": true,
+    "strict": true,
+    "target": "esnext",
+    "types": [
+      "node",
+      "react"
+    ],
+    "typeRoots": [
+      "./node_modules/@types"
+    ],
+    "paths": {
+      "@/*": ["./src/*"]
+    },
+    "noEmit": true,
+    "noUnusedLocals": true,
+    "experimentalDecorators": true,
+    "esModuleInterop": true,
+    "jsx": "preserve",
+    "jsxImportSource": "gamjeong",
+    "declaration": true,
+    "skipLibCheck": true,
+    "plugins": [
+      { "name": "next" }
+    ]
+  },
+  "include": [
+    "./src/**/*.ts",
+    "./src/**/*.tsx",
+    "next.config.js",
+    "next-env.d.ts"
+  ],
+  "exclude": [
+    ".next",
+    "node_modules"
+  ]
+}

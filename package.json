@@ -1,0 +1,76 @@
+{
+  "name": "gamjeong",
+  "version": "0.1.0",
+  "description": "A server-component compatible emotion",
+  "main": "dist/gamjeong.js",
+  "type": "module",
+  "repository": "https://github.com/HelloWorld017/gamjeong.git",
+  "keywords": ["emotion", "next", "rsc", "style", "react"],
+  "author": "Khinenw",
+  "license": "MIT",
+  "exports": {
+    ".": {
+      "types": "./dist/gamjeong.d.ts",
+      "require": "./dist/gamjeong.cjs",
+      "default": "./dist/gamjeong.js"
+    },
+    "./jsx-runtime": {
+      "types": "./dist/jsxRuntime.d.ts",
+      "server": {
+        "require": "./dist/jsxServer.cjs",
+        "default": "./dist/jsxServer.js"
+      },
+      "require": "./dist/jsxClient.cjs",
+      "default": "./dist/jsxClient.js"
+    },
+    "./jsx-dev-runtime": {
+      "types": "./dist/jsxDevRuntime.d.ts",
+      "server": {
+        "require": "./dist/jsxServerDev.cjs",
+        "default": "./dist/jsxServerDev.js"
+      },
+      "require": "./dist/jsxClientDev.cjs",
+      "default": "./dist/jsxClientDev.js"
+    }
+  },
+  "typesVersions": {
+    "*": {
+      "index.d.ts": ["./dist/gamjeong.d.ts"],
+      "jsx-runtime": ["./dist/jsxRuntime.d.ts"],
+      "jsx-dev-runtime": ["./dist/jsxDevRuntime.d.ts"]
+    }
+  },
+  "scripts": {
+    "clean": "rm -rf ./dist",
+    "build": "pnpm clean && concurrently pnpm:build:*",
+    "build:nextjs": "FRAMEWORK=nextjs pnpm vite build",
+    "build:vanilla": "FRAMEWORK=vanilla pnpm vite build",
+    "build:types": "tsc -p tsconfig.build.json && pnpm vite build --mode=type"
+  },
+  "devDependencies": {
+    "@emotion/cache": "^11.11.0",
+    "@emotion/react": "^11.11.1",
+    "@emotion/serialize": "^1.1.2",
+    "@types/node": "^20.10.0",
+    "@types/react": "^18.2.38",
+    "concurrently": "^8.2.2",
+    "next": "^14.0.3",
+    "react": "^18.2.0",
+    "rollup-plugin-dts": "^6.1.0",
+    "rollup-preserve-directives": "^1.0.0",
+    "typescript": "^5.3.2",
+    "vite": "^5.0.2"
+  },
+  "peerDependencies": {
+    "@emotion/cache": ">=11",
+    "@emotion/react": ">=11",
+    "@emotion/serialize": ">=1",
+    "next": ">=13",
+    "react": ">=18"
+  },
+  "peerDependenciesMeta": {
+    "next": {
+      "optional": true
+    }
+  }
+}

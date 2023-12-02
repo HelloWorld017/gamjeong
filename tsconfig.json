@@ -1,0 +1,39 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "lib": ["esnext"],
+    "module": "esnext",
+    "moduleResolution": "node",
+    "isolatedModules": true,
+    "strict": true,
+    "target": "esnext",
+    "types": [
+      "react",
+      "react/experimental"
+    ],
+    "typeRoots": [
+      "./node_modules/@types",
+      "./src/definitions"
+    ],
+    "paths": {
+      "@/*": ["./src/*"]
+    },
+    "noEmit": true,
+    "noUnusedLocals": true,
+    "experimentalDecorators": true,
+    "esModuleInterop": true,
+    "jsx": "preserve",
+    "declaration": true,
+    "skipLibCheck": true
+  },
+  "include": [
+    "./src/**/*.ts",
+    "./src/**/*.tsx",
+    "vite.config.ts"
+  ],
+  "exclude": [
+    "examples",
+    "node_modules",
+    "dist"
+  ]
+}
