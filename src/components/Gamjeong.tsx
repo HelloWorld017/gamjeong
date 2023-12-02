@@ -18,15 +18,14 @@ export const Gamjeong = <P extends { css: never; className?: string }, T extends
   [typePropName]: type,
   ...props
 }: GamjeongProps<P, T>) => {
-  const { emotionCache, registeredRules, theme } = getStyleInfo();
+  const { emotionCache, theme } = getStyleInfo();
   const cssRules = [css];
   let classNames = '';
 
   if (typeof props.className === 'string') {
     props.className.split(' ').forEach(serializedName => {
-      const registeredRule = registeredRules.get(serializedName);
-      if (registeredRule !== undefined) {
-        cssRules.push(registeredRule);
+      if (Object.hasOwn(emotionCache.registered, serializedName)) {
+        cssRules.push(emotionCache.registered[serializedName]);
         return;
       }
 
@@ -36,7 +35,7 @@ export const Gamjeong = <P extends { css: never; className?: string }, T extends
     classNames = `${props.className} `;
   }
 
-  const serialized = serializeStyles(cssRules, undefined, theme);
+  const serialized = serializeStyles(cssRules, emotionCache.registered, theme);
   classNames += `${emotionCache.key}-${serialized.name}`;
 
   const WrappedComponent = type as FunctionComponent<Record<string, unknown>>;
