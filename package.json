@@ -5,7 +5,13 @@
   "main": "dist/gamjeong.js",
   "type": "module",
   "repository": "https://github.com/HelloWorld017/gamjeong.git",
-  "keywords": ["emotion", "next", "rsc", "style", "react"],
+  "keywords": [
+    "emotion",
+    "next",
+    "rsc",
+    "style",
+    "react"
+  ],
   "author": "Khinenw",
   "license": "MIT",
   "exports": {
@@ -16,7 +22,7 @@
     },
     "./jsx-runtime": {
       "types": "./dist/jsxRuntime.d.ts",
-      "server": {
+      "react-server": {
         "require": "./dist/jsxServer.cjs",
         "default": "./dist/jsxServer.js"
       },
@@ -25,7 +31,7 @@
     },
     "./jsx-dev-runtime": {
       "types": "./dist/jsxDevRuntime.d.ts",
-      "server": {
+      "react-server": {
         "require": "./dist/jsxServerDev.cjs",
         "default": "./dist/jsxServerDev.js"
       },
@@ -35,9 +41,15 @@
   },
   "typesVersions": {
     "*": {
-      "index.d.ts": ["./dist/gamjeong.d.ts"],
-      "jsx-runtime": ["./dist/jsxRuntime.d.ts"],
-      "jsx-dev-runtime": ["./dist/jsxDevRuntime.d.ts"]
+      "index.d.ts": [
+        "./dist/gamjeong.d.ts"
+      ],
+      "jsx-runtime": [
+        "./dist/jsxRuntime.d.ts"
+      ],
+      "jsx-dev-runtime": [
+        "./dist/jsxDevRuntime.d.ts"
+      ]
     }
   },
   "scripts": {
@@ -72,5 +84,8 @@
     "next": {
       "optional": true
     }
+  },
+  "dependencies": {
+    "@emotion/is-prop-valid": "^1.2.1"
   }
 }
