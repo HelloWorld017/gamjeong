@@ -1,5 +1,3 @@
-/** @jsxImportSource gamjeong */
-
 import isPropValid from '@emotion/is-prop-valid';
 import { forwardRef } from 'react';
 import type { Interpolation } from '@emotion/serialize';
@@ -166,6 +164,7 @@ export const createStyled = <Props extends StyledBaseProps>(
 
       (newProps as Props & { ref?: unknown }).ref = ref;
       (newProps as Props & { css?: Interpolation<Theme> }).css = css;
+      // FIXME use gamjeong jsx
       return <FinalTag {...newProps as Props} />;
     }) as unknown as StyledComponentInternal<Props>;
 
