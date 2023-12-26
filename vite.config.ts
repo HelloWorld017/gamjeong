@@ -2,7 +2,6 @@ import { defineConfig } from 'vite';
 import { resolve } from 'node:path';
 import dts from 'rollup-plugin-dts';
 import preserveDirectives from 'rollup-preserve-directives';
-import { splitChunkByDirectives } from './build/splitChunkByDirectivesPlugin';
 
 export default defineConfig(({ mode }) => {
   const isProduction = mode === 'production';
@@ -91,10 +90,7 @@ export default defineConfig(({ mode }) => {
       __DEV__: JSON.stringify(!isProduction),
       __FRAMEWORK__: JSON.stringify(framework),
     },
-    plugins: [
-      preserveDirectives(),
-      splitChunkByDirectives(),
-    ],
+    plugins: [preserveDirectives()],
     ...(isType && typeOptions['.']),
   };
 });
