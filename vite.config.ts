@@ -72,6 +72,7 @@ export default defineConfig(({ mode }) => {
             entryFileNames: '[name].js',
             assetFileNames: 'assets/[name]-[hash][extname]',
             chunkFileNames: 'chunks/chunk-[hash].js',
+            preserveModules: true,
           },
           {
             format: 'cjs' as const,
@@ -79,6 +80,7 @@ export default defineConfig(({ mode }) => {
             entryFileNames: '[name].cjs',
             assetFileNames: 'assets/[name]-[hash][extname]',
             chunkFileNames: 'chunks/chunk-[hash].cjs',
+            preserveModules: true,
           },
         ],
         ...(isType && typeOptions['.build.rollupOptions']),
