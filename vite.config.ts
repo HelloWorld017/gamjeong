@@ -21,6 +21,7 @@ export default defineConfig(({ mode }) => {
     '.build.lib': {
       entry: {
         gamjeong: asPath('index'),
+        css: asPath('css'),
         jsxRuntime: asPath('runtimes/client'),
         jsxDevRuntime: asPath('runtimes/clientDev'),
       },
@@ -53,6 +54,7 @@ export default defineConfig(({ mode }) => {
       lib: {
         entry: {
           gamjeong: asPath('index'),
+          css: asPath('css'),
           jsxClient: asPath('runtimes/client'),
           jsxClientDev: asPath('runtimes/clientDev'),
           jsxServer: asPath('runtimes/server'),

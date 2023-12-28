@@ -68,8 +68,9 @@
     "concurrently": "^8.2.2",
     "next": "^14.0.3",
     "react": "^18.2.0",
+    "rollup": "^4.9.1",
     "rollup-plugin-dts": "^6.1.0",
-    "rollup-preserve-directives": "^1.0.0",
+    "rollup-preserve-directives": "^1.1.0",
     "typescript": "^5.3.2",
     "vite": "^5.0.2"
   },
