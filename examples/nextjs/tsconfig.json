@@ -27,13 +27,17 @@
     "skipLibCheck": true,
     "plugins": [
       { "name": "next" }
-    ]
+    ],
+    "allowJs": true,
+    "incremental": true,
+    "resolveJsonModule": true
   },
   "include": [
     "./src/**/*.ts",
     "./src/**/*.tsx",
     "next.config.js",
-    "next-env.d.ts"
+    "next-env.d.ts",
+    ".next/types/**/*.ts"
   ],
   "exclude": [
     ".next",

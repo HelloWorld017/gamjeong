@@ -16,7 +16,10 @@
   "dependencies": {
     "@types/node": "^20.10.2",
     "@types/react": "^18.2.40",
+    "gamjeong": "link:../../",
+    "geist": "^1.2.0",
     "next": "^14.0.3",
-    "gamjeong": "link:../../"
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
   }
 }
