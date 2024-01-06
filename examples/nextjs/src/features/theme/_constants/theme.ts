@@ -1,7 +1,7 @@
-import { css } from 'gamjeong';
+import { css } from 'gamjeong/css';
 import { orBelow } from '@/features/responsive';
 import { BreakPoint } from '@/features/responsive';
-import type { SerializedStyles } from 'gamjeong';
+import type { SerializedStyles } from 'gamjeong/css';
 
 type FontTuple<FontSize extends number, LineHeight extends number> = [FontSize, LineHeight];
 const font = <DF extends number, DL extends number, MF extends number, ML extends number, W extends number>(

@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "description": "A next.js example for gamjeong",
   "main": "index.js",
+  "type": "module",
   "private": true,
   "scripts": {
     "dev": "next dev",

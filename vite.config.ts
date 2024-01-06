@@ -1,7 +1,7 @@
-import { defineConfig } from 'vite';
-import { resolve } from 'node:path';
 import dts from 'rollup-plugin-dts';
 import preserveDirectives from 'rollup-preserve-directives';
+import { defineConfig } from 'vite';
+import { resolve } from 'node:path';
 import { splitChunkByDirectives } from './build/splitChunkByDirectivesPlugin';
 
 export default defineConfig(({ mode }) => {
@@ -22,7 +22,7 @@ export default defineConfig(({ mode }) => {
     '.build.lib': {
       entry: {
         gamjeong: asPath('index'),
-        css: asPath('css'),
+        css: asPath('css/index'),
         jsxRuntime: asPath('runtimes/client'),
         jsxDevRuntime: asPath('runtimes/clientDev'),
       },
@@ -50,12 +50,12 @@ export default defineConfig(({ mode }) => {
     build: {
       outDir,
       emptyOutDir: false,
-      minify: isProduction,
-      ssr: true,
+      minify: false,
+      ssr: false,
       lib: {
         entry: {
           gamjeong: asPath('index'),
-          css: asPath('css'),
+          css: asPath('css/index'),
           jsxClient: asPath('runtimes/client'),
           jsxClientDev: asPath('runtimes/clientDev'),
           jsxServer: asPath('runtimes/server'),
@@ -73,7 +73,6 @@ export default defineConfig(({ mode }) => {
             entryFileNames: '[name].js',
             assetFileNames: 'assets/[name]-[hash][extname]',
             chunkFileNames: 'chunks/chunk-[hash].js',
-            preserveModules: true,
           },
           {
             format: 'cjs' as const,
@@ -81,7 +80,6 @@ export default defineConfig(({ mode }) => {
             entryFileNames: '[name].cjs',
             assetFileNames: 'assets/[name]-[hash][extname]',
             chunkFileNames: 'chunks/chunk-[hash].cjs',
-            preserveModules: true,
           },
         ],
         ...(isType && typeOptions['.build.rollupOptions']),

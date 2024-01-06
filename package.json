@@ -20,6 +20,11 @@
       "require": "./dist/gamjeong.cjs",
       "default": "./dist/gamjeong.js"
     },
+    "./css": {
+      "types": "./dist/css.d.ts",
+      "require": "./dist/css.cjs",
+      "default": "./dist/css.js"
+    },
     "./jsx-runtime": {
       "types": "./dist/jsxRuntime.d.ts",
       "react-server": {
@@ -43,6 +48,9 @@
     "*": {
       "index.d.ts": [
         "./dist/gamjeong.d.ts"
+      ],
+      "css": [
+        "./dist/css.d.ts"
       ],
       "jsx-runtime": [
         "./dist/jsxRuntime.d.ts"
