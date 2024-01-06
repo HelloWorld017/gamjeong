@@ -1,7 +1,7 @@
 import type { ManualChunkMeta } from 'rollup';
 import type { Plugin } from 'vite';
 
-export const splitChunkByDirectives = (): Plugin => ({
+const splitChunkByDirectives = (): Plugin => ({
   name: 'splitChunkByDirectives',
   outputOptions(output) {
     if (output.manualChunks && typeof output.manualChunks !== 'function') {
@@ -30,3 +30,5 @@ export const splitChunkByDirectives = (): Plugin => ({
     };
   },
 });
+
+export default splitChunkByDirectives;
