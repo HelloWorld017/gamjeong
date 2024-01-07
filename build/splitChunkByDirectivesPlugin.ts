@@ -1,3 +1,4 @@
+import { createHash } from 'node:crypto';
 import type { ManualChunkMeta, Plugin } from 'rollup';
 
 const createDirectivesSignature = (directives: string[]) =>
@@ -64,11 +65,13 @@ const splitChunkByDirectives = (): Plugin => ({
 
         parentDirectivesSet.add(parentDirectives);
         return parentDirectivesSet;
-      }, new Set());
+      }, new Set<string>());
 
+      const hash = createHash('sha256');
+      const uniqueId = hash.update(id).digest('base64').slice(0, 7);
       if (parentDirectivesSet.size > 1) {
         // Imported in multiple directives set
-        return userChunk ?? id;
+        return userChunk ?? uniqueId;
       }
 
       const { preserveDirectives } = moduleMeta as ModuleMeta;
@@ -77,7 +80,11 @@ const splitChunkByDirectives = (): Plugin => ({
       }
 
       const directives = createDirectivesSignature(preserveDirectives.directives);
-      return `${directives}_${userChunk ?? id}`;
+      if (directives === (parentDirectivesSet.values().next().value as string | undefined)) {
+        return userChunk;
+      }
+
+      return `${directives}_${userChunk ?? uniqueId}`;
     };
 
     return output;

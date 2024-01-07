@@ -66,6 +66,7 @@ const defaultOptions = {
   },
   output: [
     {
+      strict: false,
       hoistTransitiveImports: false,
       format: 'es' as const,
       dir: outDir,
@@ -74,6 +75,7 @@ const defaultOptions = {
       chunkFileNames: 'chunks/chunk-[hash].js',
     },
     {
+      strict: false,
       hoistTransitiveImports: false,
       format: 'cjs' as const,
       dir: outDir,
@@ -82,6 +84,9 @@ const defaultOptions = {
       chunkFileNames: 'chunks/chunk-[hash].cjs',
     },
   ],
+  treeshake: {
+    moduleSideEffects: false,
+  },
   plugins: [
     alias({ entries: [{ find: /^@\//, replacement: `${base}/` }] }),
     commonjs({ include: [/node_modules/] }),
