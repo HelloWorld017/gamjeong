@@ -19,4 +19,22 @@ export const keyframes = (...args: Interpolation<Theme>[]): Keyframes => {
   } as Keyframes;
 };
 
-export type * from '@emotion/react';
+export type {
+  ArrayClassNamesArg,
+  ArrayInterpolation,
+  CSSObject,
+  ClassNamesArg,
+  ClassNamesProps,
+  ClassNamesContent,
+  ComponentSelector,
+  DistributiveOmit,
+  EmotionCache,
+  FunctionInterpolation,
+  GlobalProps,
+  Interpolation,
+  Keyframes,
+  PropsOf,
+  SerializedStyles,
+  Theme,
+  ThemeProviderProps,
+} from '@emotion/react';
