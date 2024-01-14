@@ -91,6 +91,8 @@ const defaultOptions = {
     alias({ entries: [{ find: /^@\//, replacement: `${base}/` }] }),
     commonjs({ include: [/node_modules/] }),
     esbuild({
+      jsx: 'automatic',
+      jsxImportSource: 'react',
       define: {
         __DEV__: JSON.stringify(!isProduction),
         __FRAMEWORK__: JSON.stringify(framework),
