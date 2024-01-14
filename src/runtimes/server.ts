@@ -1,21 +1,20 @@
 import { createGamjeongProps } from '@/utils/createGamjeongProps';
 import { Gamjeong } from '@/components/Gamjeong';
-import * as ReactJSXRuntime from 'react/jsx-runtime';
+import { Fragment, jsx as reactJSX, jsxs as reactJSXs } from 'react/jsx-runtime';
 
-export const Fragment = ReactJSXRuntime.Fragment;
-
-export const jsx: typeof ReactJSXRuntime.jsx = (type, props, key) => {
+export { Fragment };
+export const jsx: typeof reactJSX = (type, props, key) => {
   if (!Object.hasOwn(props, 'css')) {
-    return ReactJSXRuntime.jsx(type, props, key)
+    return reactJSX(type, props, key)
   }
 
-  return ReactJSXRuntime.jsx(Gamjeong, createGamjeongProps(type, props), key)
+  return reactJSX(Gamjeong, createGamjeongProps(type, props), key)
 }
 
-export const jsxs: typeof ReactJSXRuntime.jsxs = (type, props, key) => {
+export const jsxs: typeof reactJSXs = (type, props, key) => {
   if (!Object.hasOwn(props, 'css')) {
-    return ReactJSXRuntime.jsxs(type, props, key);
+    return reactJSXs(type, props, key);
   }
 
-  return ReactJSXRuntime.jsxs(Gamjeong, createGamjeongProps(type, props), key);
+  return reactJSXs(Gamjeong, createGamjeongProps(type, props), key);
 }

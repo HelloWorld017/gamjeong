@@ -1,12 +1,11 @@
 import { createGamjeongProps } from '@/utils/createGamjeongProps';
 import { Gamjeong } from '@/components/Gamjeong';
-import * as ReactJSXDevRuntime from 'react/jsx-dev-runtime';
+import { Fragment, jsxDEV as reactJSXDev } from 'react/jsx-dev-runtime';
 
-export const Fragment = ReactJSXDevRuntime.Fragment;
-
-export const jsxDEV: typeof ReactJSXDevRuntime.jsxDEV = (type, props, key, isStaticChildren, source, self) => {
+export { Fragment };
+export const jsxDEV: typeof reactJSXDev = (type, props, key, isStaticChildren, source, self) => {
   if (!Object.hasOwn(props, 'css')) {
-    return ReactJSXDevRuntime.jsxDEV(
+    return reactJSXDev(
       type,
       props,
       key,
@@ -16,7 +15,7 @@ export const jsxDEV: typeof ReactJSXDevRuntime.jsxDEV = (type, props, key, isSta
     );
   }
 
-  return ReactJSXDevRuntime.jsxDEV(
+  return reactJSXDev(
     Gamjeong,
     createGamjeongProps(type, props),
     key,
