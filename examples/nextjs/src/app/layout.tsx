@@ -1,4 +1,5 @@
 import { StyleProvider } from '@/features/theme';
+import { Footer } from './_components/Footer';
 import type { ReactNode } from 'react';
 
 export default ({ children }: { children: ReactNode }) => (

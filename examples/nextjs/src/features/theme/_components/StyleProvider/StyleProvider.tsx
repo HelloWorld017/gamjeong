@@ -1,5 +1,6 @@
 import { lightTheme } from '../../_constants/theme';
-import { GamjeongStyleProvider } from 'gamjeong';
+import { ClientStyleProvider } from './ClientStyleProvider';
+import { GamjeongServerStyleProvider } from 'gamjeong';
 import type { ReactNode } from 'react';
 
 type StyleProviderProps = {
@@ -7,7 +8,9 @@ type StyleProviderProps = {
 };
 
 export const StyleProvider = ({ children }: StyleProviderProps) => (
-  <GamjeongStyleProvider theme={lightTheme}>
-    {children}
-  </GamjeongStyleProvider>
+  <GamjeongServerStyleProvider theme={lightTheme}>
+    <ClientStyleProvider>
+      {children}
+    </ClientStyleProvider>
+  </GamjeongServerStyleProvider>
 );
