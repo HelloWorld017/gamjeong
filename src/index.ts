@@ -1,1 +1,2 @@
-export * from './components/GamjeongStyleProvider';
+export * from './components/GamjeongClientStyleProvider';
+export * from './components/GamjeongServerStyleProvider';

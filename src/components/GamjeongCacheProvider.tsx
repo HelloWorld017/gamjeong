@@ -1,3 +1,5 @@
+'use client';
+
 import { exhaustive } from '@/utils/exhaustive';
 
 import { GamjeongCacheProviderNextJS } from './GamjeongCacheProviderNextJS';
