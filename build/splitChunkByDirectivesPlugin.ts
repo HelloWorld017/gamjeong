@@ -1,94 +1,98 @@
 import { createHash } from 'node:crypto';
-import type { ManualChunkMeta, Plugin } from 'rollup';
+import type { Plugin } from 'rollup';
 
-const createDirectivesSignature = (directives: string[]) =>
-   Array
-      .from(new Set(directives))
-      .map(directive => directive.replace('use ', ''))
-      .sort()
-      .join('_');
+const getDirectiveSignature = (directives: string[]) => {
+  const signature = Array
+    .from(new Set(directives))
+    .sort()
+    .map(directive => directive.replace(/^use /i, ''))
+    .join('/');
 
-type ModuleMeta = {
-  preserveDirectives: { directives: string[] }
+  return signature;
 };
 
-const splitChunkByDirectives = (): Plugin => ({
-  name: 'splitChunkByDirectives',
-  outputOptions(output) {
-    if (output.manualChunks && typeof output.manualChunks !== 'function') {
-      console.warn(
-        '(!) the `splitChunkByDirectives` plugin doesn\'t have any effect when using the object form ' +
-        'of `build.rollupOptions.output.manualChunks`. Consider using the function form instead.',
-      );
-      return;
-    }
+type ModuleMeta = {
+  preserveDirectives?: { directives: string[] };
+};
 
-    if (output.hoistTransitiveImports !== false) {
-      console.warn(
-        '(!) you might need `hoistTransitiveImports` to be false to prevent unexpected import hoistings, ' +
-        'which can cause incorrectly preserved directives.'
-      );
+const splitChunkByDirectives = (): Plugin => {
+  let hasSeenPreserveDirectivesMeta = false;
+  const directivesBoundary = new Set<string>();
 
-      if (output.hoistTransitiveImports !== true) {
+  return {
+    name: 'splitChunkByDirectives',
+    buildEnd() {
+      const moduleIds = this.getModuleIds();
+      for (const id of moduleIds) {
+        const info = this.getModuleInfo(id);
+        if (!info) {
+          return;
+        }
+
+        const moduleMeta = info.meta as ModuleMeta;
+        if (moduleMeta.preserveDirectives) {
+          hasSeenPreserveDirectivesMeta = true;
+        }
+
+        const moduleImporters = info.importers;
+        const signature = getDirectiveSignature(moduleMeta.preserveDirectives?.directives ?? []);
+        const parentSignatures = moduleImporters.reduce((signatures, importer) => {
+          const parentInfo = this.getModuleInfo(importer);
+          const parentMeta = parentInfo?.meta as ModuleMeta;
+          if (!parentMeta || !parentMeta.preserveDirectives) {
+            signatures.add('');
+            return signatures;
+          }
+
+          signatures.add(getDirectiveSignature(parentMeta.preserveDirectives.directives));
+          return signatures;
+        }, new Set<string>());
+
+        const isBoundary = Array
+          .from(parentSignatures)
+          .some(parentSignature => parentSignature !== signature);
+
+        if (isBoundary) {
+          directivesBoundary.add(info.id);
+        }
+      }
+    },
+    outputOptions(output) {
+      if (output.hoistTransitiveImports !== false) {
         console.warn(
-          '(!) the `hoistTransitiveImports` option is set to false, ' +
-          'use explicit "true" to prevent this behavior.'
+          '(!) you might need `hoistTransitiveImports` to be false to prevent unexpected import hoistings, ' +
+          'which can cause incorrectly preserved directives.'
         );
 
-        output.hoistTransitiveImports = false;
-      }
-    }
+        if (output.hoistTransitiveImports !== true) {
+          console.warn(
+            '(!) the `hoistTransitiveImports` option is set to false, ' +
+            'use explicit "true" to prevent this behavior.'
+          );
 
-    const userManualChunks = output.manualChunks;
-    output.manualChunks = (id: string, api: ManualChunkMeta) => {
-      const userChunk = userManualChunks && userManualChunks(id, api);
-      const moduleInfo = api.getModuleInfo(id);
-      const moduleMeta = moduleInfo?.meta;
-      if (!moduleMeta || !('preserveDirectives' in moduleMeta)) {
+          output.hoistTransitiveImports = false;
+        }
+      }
+
+      output.manualChunks = id => {
+        if (directivesBoundary.has(id)) {
+          const hash = createHash('sha256');
+          const uniqueId = hash.update(id).digest('base64').slice(0, 7);
+          return uniqueId;
+        }
+      };
+
+      return output;
+    },
+    renderStart() {
+      if (!hasSeenPreserveDirectivesMeta) {
         console.warn(
           '(!) the `splitChunkByDirectives` plugin needs the `rollup-preserve-directives` plugin to work',
         );
         return;
       }
-
-      const moduleImporters = moduleInfo.importers;
-      const parentDirectivesSet = moduleImporters.reduce((parentDirectivesSet, importer) => {
-        const parentInfo = api.getModuleInfo(importer);
-        const parentMeta = parentInfo?.meta;
-        if (!parentMeta || !('preserveDirectives' in parentMeta)) {
-          return parentDirectivesSet;
-        }
-
-        const parentDirectives = createDirectivesSignature(
-          (parentMeta as ModuleMeta).preserveDirectives.directives
-        );
-
-        parentDirectivesSet.add(parentDirectives);
-        return parentDirectivesSet;
-      }, new Set<string>());
-
-      const hash = createHash('sha256');
-      const uniqueId = hash.update(id).digest('base64').slice(0, 7);
-      if (parentDirectivesSet.size > 1) {
-        // Imported in multiple directives set
-        return userChunk ?? uniqueId;
-      }
-
-      const { preserveDirectives } = moduleMeta as ModuleMeta;
-      if (preserveDirectives.directives.length === 0) {
-        return userChunk;
-      }
-
-      const directives = createDirectivesSignature(preserveDirectives.directives);
-      if (directives === (parentDirectivesSet.values().next().value as string | undefined)) {
-        return userChunk;
-      }
-
-      return `${directives}_${userChunk ?? uniqueId}`;
-    };
-
-    return output;
-  },
-});
+    }
+  };
+};
 
 export default splitChunkByDirectives;
