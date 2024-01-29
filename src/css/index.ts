@@ -4,8 +4,8 @@ import type { Theme } from '@emotion/react';
 
 export * from './components';
 
-export const css = (...args: Interpolation<Theme>[]) => serializeStyles(args);
-export const keyframes = (...args: Interpolation<Theme>[]): Keyframes => {
+export const css = (...args: (TemplateStringsArray | Interpolation<Theme>)[]) => serializeStyles(args);
+export const keyframes = (...args: (TemplateStringsArray | Interpolation<Theme>)[]): Keyframes => {
   const insertable = css(...args);
   const name = `animation-${insertable.name}`;
 

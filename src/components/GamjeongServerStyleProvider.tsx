@@ -1,7 +1,5 @@
 import { getStyleInfo } from '@/caches/getStyleInfo';
 
-import { GamjeongThemeProvider } from './GamjeongThemeProvider';
-
 import type { EmotionCache } from '@emotion/cache';
 import type { Theme } from '@emotion/react';
 import type { ReactNode } from 'react';
