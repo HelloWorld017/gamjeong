@@ -7,6 +7,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
+    "inspect": "NODE_OPTIONS='--inspect' next dev",
     "start": "next"
   },
   "keywords": [
@@ -15,12 +16,18 @@
   "author": "Khinenw",
   "license": "MIT",
   "dependencies": {
-    "@types/node": "^20.10.2",
-    "@types/react": "^18.2.40",
+    "@mdx-js/react": "^3.0.0",
+    "@next/mdx": "^14.1.0",
     "gamjeong": "link:../../",
-    "geist": "^1.2.0",
-    "next": "^14.0.3",
+    "next": "^14.1.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "@mdx-js/loader": "^3.0.0",
+    "@svgr/webpack": "^8.1.0",
+    "@types/mdx": "^2.0.10",
+    "@types/node": "^20.10.2",
+    "@types/react": "^18.2.40"
   }
 }

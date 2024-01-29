@@ -1,4 +1,4 @@
-import { lightTheme } from '../../_constants/theme';
+import { darkTheme } from '../../_constants/theme';
 import { ClientStyleProvider } from './ClientStyleProvider';
 import { GamjeongServerStyleProvider } from 'gamjeong';
 import type { ReactNode } from 'react';
@@ -8,7 +8,7 @@ type StyleProviderProps = {
 };
 
 export const StyleProvider = ({ children }: StyleProviderProps) => (
-  <GamjeongServerStyleProvider theme={lightTheme}>
+  <GamjeongServerStyleProvider theme={darkTheme}>
     <ClientStyleProvider>
       {children}
     </ClientStyleProvider>
