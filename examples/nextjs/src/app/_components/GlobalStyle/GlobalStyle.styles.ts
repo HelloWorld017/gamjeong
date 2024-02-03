@@ -13,6 +13,12 @@ export const layoutStyle = (theme: Theme) => css`
     background: ${theme.colors.bgBase};
     font-family: ${theme.typography.fontBase};
     scroll-behavior: smooth;
+    height: 100%;
+  }
+
+  body {
+    display: flex;
+    flex-direction: column;
   }
 
   a {

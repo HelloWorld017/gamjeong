@@ -15,6 +15,7 @@ export const homeStyle = (theme: Theme) => css`
 export const asideStyle = (theme: Theme) => css`
   display: flex;
   flex-direction: column;
+  height: 100%;
 
   min-width: 250px;
   flex: 0 0 auto;

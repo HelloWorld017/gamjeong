@@ -1,8 +1,9 @@
 import { Theme, css } from 'gamjeong/css';
 
 export const containerStyle = css`
-  padding: 64px 0;
   display: flex;
+  height: 100%;
+  padding: 64px 0;
   gap: 32px;
 `;
 

@@ -6,6 +6,7 @@ export const footerStyle = (theme: Theme) =>  css`
   padding-top: 30px;
   padding-bottom: 30px;
   border-top: 1px solid ${theme.colors.fillLine};
+  flex: 0 0 auto;
 `;
 
 export const footerContentStyle = css`
