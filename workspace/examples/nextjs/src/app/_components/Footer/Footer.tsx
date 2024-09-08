@@ -10,7 +10,7 @@ export const Footer = () => (
           Gamjeong
         </div>
         <div css={styles.sectionItemStyle}>
-          Developed by nenw*, licensed as MIT
+          Developed by nenw*
         </div>
       </div>
     </div>

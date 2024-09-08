@@ -1,0 +1,36 @@
+{
+  "name": "@gamjeong/internals-definitions",
+  "version": "0.1.0",
+  "description": "Internal type definitions to build gamjeong",
+  "type": "module",
+  "author": "Khinenw",
+  "license": "MIT",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "scripts": {
+    "clean": "rm -rf ./dist",
+    "build": "pnpm clean && concurrently pnpm:build:*",
+    "build:dist": "pnpm rollup -c rollup.config.ts --configPlugin rollup-plugin-esbuild",
+    "typecheck": "tsc -p tsconfig.json --noEmit"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2",
+    "rollup": "^4.9.1"
+  },
+  "peerDependencies": {
+    "rollup": ">=4"
+  },
+  "dependencies": {
+    "@rollup/plugin-alias": "^5.1.0",
+    "@rollup/plugin-commonjs": "^25.0.7",
+    "@rollup/plugin-node-resolve": "^15.2.3",
+    "rollup-plugin-dts": "^6.1.0",
+    "rollup-plugin-esbuild": "^6.1.0",
+    "rollup-preserve-directives": "^1.1.0"
+  }
+}
+

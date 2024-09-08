@@ -7,17 +7,10 @@
     "isolatedModules": true,
     "strict": true,
     "target": "esnext",
-    "types": [
-      "react",
-      "react/experimental"
-    ],
     "typeRoots": [
       "./node_modules/@types",
-      "./src/definitions"
+      "./node_modules"
     ],
-    "paths": {
-      "@/*": ["./src/*"]
-    },
     "noEmit": true,
     "noUnusedLocals": true,
     "experimentalDecorators": true,
@@ -26,14 +19,7 @@
     "declaration": true,
     "skipLibCheck": true
   },
-  "include": [
-    "./src/**/*.ts",
-    "./src/**/*.tsx",
-    "vite.config.ts"
-  ],
   "exclude": [
-    "examples",
-    "node_modules",
-    "dist"
+    "node_modules"
   ]
 }

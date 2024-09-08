@@ -20,7 +20,7 @@ export const featureItemStyle = css`
   align-items: flex-start;
   gap: 24px;
 
-  flex: 1 1 auto;
+  flex: 1 1 0;
   min-width: 0;
 
   ${orBelow(
@@ -142,5 +142,10 @@ export const buttonStyle = (isPrimary: boolean) => (theme: Theme) => css`
   border-radius: 16px;
   background: ${isPrimary ? theme.colors.fillBranding: theme.colors.bgElevated};
   color: ${isPrimary ? theme.colors.fillInverted : theme.colors.fillPrimary};
+
+  display: inline-flex;
+  align-items: center;
+  text-align: center;
+
   ${theme.typography.control};
 `;

@@ -1,5 +1,5 @@
 {
-  "name": "gamjeong-examples-nextjs",
+  "name": "@gamjeong/examples-nextjs",
   "version": "0.1.0",
   "description": "A next.js example for gamjeong",
   "main": "index.js",
@@ -18,7 +18,7 @@
   "dependencies": {
     "@mdx-js/react": "^3.0.0",
     "@next/mdx": "^14.1.0",
-    "gamjeong": "link:../../",
+    "gamjeong": "workspace:gamjeong",
     "next": "^14.1.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"

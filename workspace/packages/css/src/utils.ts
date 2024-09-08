@@ -2,8 +2,6 @@ import { serializeStyles } from '@emotion/serialize';
 import type { Interpolation, Keyframes } from '@emotion/serialize';
 import type { Theme } from '@emotion/react';
 
-export * from './components';
-
 export const css = (...args: (TemplateStringsArray | Interpolation<Theme>)[]) => serializeStyles(args);
 export const keyframes = (...args: (TemplateStringsArray | Interpolation<Theme>)[]): Keyframes => {
   const insertable = css(...args);
@@ -19,22 +17,3 @@ export const keyframes = (...args: (TemplateStringsArray | Interpolation<Theme>)
   } as Keyframes;
 };
 
-export type {
-  ArrayClassNamesArg,
-  ArrayInterpolation,
-  CSSObject,
-  ClassNamesArg,
-  ClassNamesProps,
-  ClassNamesContent,
-  ComponentSelector,
-  DistributiveOmit,
-  EmotionCache,
-  FunctionInterpolation,
-  GlobalProps,
-  Interpolation,
-  Keyframes,
-  PropsOf,
-  SerializedStyles,
-  Theme,
-  ThemeProviderProps,
-} from '@emotion/react';

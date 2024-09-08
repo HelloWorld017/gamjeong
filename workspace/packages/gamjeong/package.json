@@ -1,0 +1,40 @@
+{
+  "name": "gamjeong",
+  "version": "0.1.0",
+  "description": "A server-component compatible emotion",
+  "main": "dist/gamjeong.js",
+  "type": "module",
+  "repository": "https://github.com/HelloWorld017/gamjeong.git",
+  "author": "Khinenw",
+  "license": "MIT",
+  "scripts": {
+    "clean": "rm -rf ./dist",
+    "build": "pnpm clean && concurrently pnpm:build:*",
+    "build:nextjs": "FRAMEWORK=nextjs pnpm rollup-build",
+    "build:vanilla": "FRAMEWORK=vanilla pnpm rollup-build",
+    "build:types": "tsc -p tsconfig.build.json && MODE=type pnpm rollup-build",
+    "typecheck": "tsc -p tsconfig.json --noEmit"
+  },
+  "dependencies": {
+  },
+  "devDependencies": {
+    "next": "^14.0.3",
+    "react": "^18.2.0"
+  },
+  "peerDependencies": {
+    "next": ">=13",
+    "react": ">=18"
+  },
+  "peerDependenciesMeta": {
+    "next": {
+      "optional": true
+    }
+  },
+  "keywords": [
+    "emotion",
+    "next",
+    "rsc",
+    "style",
+    "react"
+  ]
+}

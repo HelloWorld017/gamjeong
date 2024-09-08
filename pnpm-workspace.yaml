@@ -1,0 +1,5 @@
+packages:
+  - 'workspace/examples/*'
+  - 'workspace/internals/*'
+  - 'workspace/packages/*'
+
